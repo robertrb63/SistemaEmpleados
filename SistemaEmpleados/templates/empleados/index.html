@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <br>
   <title>EmpleadosConFlaskJinja2</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -12,7 +13,32 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
 </head>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="{{ url_for('index')}}">Gestion Empleados</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+</li>
+            <li class="nav-item">
+              <br>
+              <a href="{{url_for('create')}}" class="btn btn-success">Ingresar Nuevo Empleado</a>
+            </li>
+            <li class="nav-item dropdown">
 
+            </li>
+        </ul>
+        <form class="d-flex my-2 my-lg-0">
+            <input class="form-control me-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+</nav>
 <body>
   <header>
     <!-- place navbar here -->
@@ -31,6 +57,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
+
+<br>
+
         <table class="table table-ligth">
             <thead class="thead-light">
                 <tr>
@@ -46,12 +75,14 @@
                 {% for empleado in empleados%}
                 <tr>
                     <td>{{empleado[0]}}</td>
-                    <td>{{empleado[3]}}</td>
+                    <td>
+                      <img class="img-thumbnail" width="100" img src="uploads/{{empleado[3]}}" alt="">
+                      
+                    </td>
                     <td>{{empleado[1]}}</td>
                     <td>{{empleado[2]}}</td>
-                    <td><a href="/edit/{{empleado[0]}}">Editar</a> | 
-                        <a href="/destroy/{{empleado[0]}}">Eliminar</a>
-                        
+                    <td><a class="btn btn-warning" href="/edit/{{empleado[0]}}">Editar</a> | 
+                        <a onclick="return confirm('¿Deseas Borrar el Registro?')" class="btn btn-danger" href="/destroy/{{empleado[0]}}">Eliminar</a>          
                         </td>
                 </tr>
                 {%  endfor %}
